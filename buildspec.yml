@@ -1,0 +1,16 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      python: 3.x
+    commands:
+      - echo "Installing Packer..."
+      - curl -O https://releases.hashicorp.com/packer/1.8.0/packer_1.8.0_linux_amd64.zip
+      - unzip packer_1.8.0_linux_amd64.zip -d /usr/local/bin/
+  build:
+    commands:
+      - echo "Starting AMI build with Packer..."
+      - packer build template.json
+  post_build:
+    commands:
+      - echo "Build complete. AMI creation successful."
